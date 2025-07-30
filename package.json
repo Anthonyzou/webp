@@ -1,11 +1,11 @@
 {
   "name": "webp",
-  "version": "1.0.0",
+  "version": "1.5",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "docker build . --platform linux/amd64,linux/arm64 -t anthonyzou/webp:1.4",
-    "push": "docker push anthonyzou/webp:1.4"
+    "build": "docker build . --platform linux/amd64,linux/arm64 -t anthonyzou/webp:$npm_package_version",
+    "postbuild": "docker push anthonyzou/webp:$npm_package_version"
   },
   "author": "",
   "license": "ISC",
