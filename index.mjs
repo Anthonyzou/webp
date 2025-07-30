@@ -4,7 +4,7 @@ import fs from "fs/promises";
 
 const dir = "./tmp/";
 chokidar.watch(dir).on("add", async (filename) => {
-  console.log(`Detected in ${filename}`);
+  if (filename.includes(".fuse_hidden")) return;
 
   try {
     const metadata = await sharp(filename).metadata();
@@ -14,14 +14,14 @@ chokidar.watch(dir).on("add", async (filename) => {
       metadata.format.includes("png") ||
       metadata.format.includes("jpg");
 
-    if (isImage && filename.includes("test")) {
-      console.log("sharp");
+    if (isImage) {
+      console.log(`sharp ${filename}`);
       await sharp(filename)
         .webp({ lossless: false })
         .toFile(filename.replace(/\.[^/.]+$/, ".webp"));
       await fs.unlink(filename);
     }
   } catch (e) {
-    console.log(e);
+    console.log(e.message, filename);
   }
 });
