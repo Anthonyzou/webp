@@ -15,7 +15,7 @@ chokidar.watch(dir).on("add", async (filename) => {
       metadata.format.includes("jpg");
 
     if (isImage) {
-      console.log(`sharp ${filename}`);
+      console.log(`sharp ${new Date()} ${filename}`);
       await sharp(filename)
         .webp({ lossless: false })
         .toFile(filename.replace(/\.[^/.]+$/, ".webp"));
