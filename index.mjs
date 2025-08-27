@@ -8,7 +8,6 @@ chokidar.watch(dir).on("add", async (filename) => {
 
   try {
     const metadata = await sharp(filename).metadata();
-
     const isImage =
       metadata.format.includes("jpeg") ||
       metadata.format.includes("png") ||
@@ -18,9 +17,10 @@ chokidar.watch(dir).on("add", async (filename) => {
       const a = await sharp(filename)
         .webp({ lossless: false })
         .toFile(filename.replace(/\.[^/.]+$/, ".webp"));
+      const stats = await fs.stat(filename);
 
       console.log(
-        `sharp ${new Date()} ${filename} before: ${metadata.size} after: ${a.size}`,
+        `sharp ${new Date()} ${filename} before: ${stats.size} after: ${a.size}`,
       );
       await fs.unlink(filename);
     }
