@@ -22,7 +22,11 @@ chokidar.watch(dir).on("add", async (filename) => {
       console.log(
         `sharp ${new Date()} ${filename} before: ${stats.size} after: ${a.size}`,
       );
-      await fs.unlink(filename);
+
+      // Give some time for the uploaded file to be processed by autosync on android
+      setTimeout(() => {
+        fs.unlink(filename);
+      }, 1000);
     }
   } catch (e) {
     console.log(e.message, filename);
