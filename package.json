@@ -1,6 +1,6 @@
 {
   "name": "webp",
-  "version": "1.8",
+  "version": "1.9",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^24.7.0"
+    "@types/node": "^25.5.0"
   },
   "dependencies": {
-    "chokidar": "^4.0.3",
-    "prettier": "^3.6.2",
-    "sharp": "^0.34.4"
+    "chokidar": "^5.0.0",
+    "prettier": "^3.8.1",
+    "sharp": "^0.34.5"
   }
 }
